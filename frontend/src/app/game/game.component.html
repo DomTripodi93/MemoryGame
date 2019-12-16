@@ -1,5 +1,23 @@
 <p>game works!</p>
-<div *ngIf="base < 11">
+<div class="row">
+    <form (ngSubmit)='setGameSize()' #gameSizeSelect="ngForm">
+        <div class="grid2 col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">    
+            <select 
+                id="size" 
+                class="form-control input-center"
+                [(ngModel)]="defaultSize"
+                name="size">
+                <option *ngFor="let size of gameSize" class="input-center centered">
+                    {{size}}
+                </option>
+            </select>
+            <div class="grid100">
+                <button class="btn btn-primary"><strong>Select Game Size</strong></button>
+            </div>
+        </div>
+    </form>      
+</div>
+<div *ngIf="base < 13">
     <div class="grid25">
         <div *ngFor="let cardNum of cards">
             <app-card [size]="base"></app-card>
@@ -7,7 +25,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="base > 11 && base < 21">
+<div *ngIf="base > 13 && base < 21">
     <div class="grid20">
         <div *ngFor="let cardNum of cards">
             <app-card [size]="base"></app-card>
@@ -16,7 +34,7 @@
     </div>
 </div>
 <div *ngIf="base > 21 && base < 41">
-    <div class="grid20">
+    <div class="grid10">
         <div *ngFor="let cardNum of cards">
             <app-card [size]="base"></app-card>
             <br>

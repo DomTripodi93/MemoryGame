@@ -7,3 +7,13 @@
     display: grid;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
+
+.grid25 { 
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.grid100 { 
+    display: grid;
+    grid-template-columns: 100%;
+}
