@@ -1,2 +1,25 @@
 <p>game works!</p>
-<app-card></app-card>
+<div *ngIf="base < 11">
+    <div class="grid25">
+        <div *ngFor="let cardNum of cards">
+            <app-card [size]="base"></app-card>
+            <br>
+        </div>
+    </div>
+</div>
+<div *ngIf="base > 11 && base < 21">
+    <div class="grid20">
+        <div *ngFor="let cardNum of cards">
+            <app-card [size]="base"></app-card>
+            <br>
+        </div>
+    </div>
+</div>
+<div *ngIf="base > 21 && base < 41">
+    <div class="grid20">
+        <div *ngFor="let cardNum of cards">
+            <app-card [size]="base"></app-card>
+            <br>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,8 @@ import { GameService } from './game.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  cards = [1,2,3,4,5,6,7,8,9,10]
+  cards = []
+  base: number;
 
   constructor(
     private game: GameService
@@ -15,6 +16,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.cards = this.game.setCards(10);
+    this.base = this.cards.length;
     this.cards = this.game.shuffleCards(this.cards);
     console.log(this.cards);
   }
