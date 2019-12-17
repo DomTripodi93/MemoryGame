@@ -90,6 +90,10 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   checkCard(){
+    if(this.game.checkCount == 2) {
+      this.game.resetCards.next();
+      this.game.checkCount = 0;
+    }
     this.imgSrc = this.cardImgs[this.value];
     this.cardValue.emit(this.value);
   }

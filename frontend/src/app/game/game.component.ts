@@ -9,11 +9,10 @@ import { NgForm } from '@angular/forms';
 })
 export class GameComponent implements OnInit {
   @ViewChild('gameSizeSelect', {static: false}) gameSizeForm: NgForm;
-  cards = []
+  cards: number[] = [];
   base: number;
-  gameSize = [12, 20, 40];
-  defaultSize = 12;
-  checkCount: number = 0;
+  gameSize: number[] = [12, 20, 40];
+  defaultSize: number = 12;
 
   constructor(
     private game: GameService
@@ -31,18 +30,20 @@ export class GameComponent implements OnInit {
   }
 
   checkValue($event){
-    if (this.checkCount < 1){
+    if (this.game.checkCount < 1){
       this.game.cardHold = $event;
-      this.checkCount++;
-    } else if (this.checkCount == 1){
+      this.game.checkCount++;
+    } else if (this.game.checkCount == 1){
       if (this.game.cardHold == $event){
+        this.game.checkCount = 0;
         this.game.saveCard.next();
+      } else{
+        this.game.checkCount++;
       }
-      this.checkCount++;
     } else {
-      this.checkCount = 0;
-      this.game.resetCards.next();
+      this.game.checkCount = 0;
       this.game.cardHold = 0;
+      this.checkValue($event);
     }
   }
 
