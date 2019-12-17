@@ -8,15 +8,13 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { CardComponent } from './game/card/card.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     CardComponent,
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
