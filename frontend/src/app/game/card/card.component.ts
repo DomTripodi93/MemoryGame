@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { GameService } from '../game.service';
 import { Subscription } from 'rxjs';
 
@@ -7,11 +7,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
   @Output() cardValue = new EventEmitter<number>();
   @Input() value: number;
   @Input() size: number;
   resetSub: Subscription;
+  gameSub: Subscription;
   flipped = false;
   imgSrc = "../../../assets/cards/red_back.png";
   backImg = "../../../assets/cards/red_back.png";
@@ -79,7 +80,7 @@ export class CardComponent implements OnInit {
     this.resetSub = this.game.resetCards.subscribe(()=>{
       this.imgSrc = this.backImg;
     })
-    this.game.saveCard.subscribe(()=>{
+    this.gameSub = this.game.saveCard.subscribe(()=>{
       if (this.imgSrc != this.backImg){
         if (this.value == this.game.cardHold){
           this.resetSub.unsubscribe();
@@ -91,6 +92,11 @@ export class CardComponent implements OnInit {
   checkCard(){
     this.imgSrc = this.cardImgs[this.value];
     this.cardValue.emit(this.value);
+  }
+
+  ngOnDestroy(){
+    this.resetSub.unsubscribe();
+    this.gameSub.unsubscribe();
   }
 
 }

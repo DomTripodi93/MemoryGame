@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
   }
 
   setGameSize(){
+    this.cards = [];
     this.base = this.gameSizeForm.value.size/2;
     this.cards = this.game.setCards(this.base);
     this.base = this.cards.length;
@@ -35,7 +36,6 @@ export class GameComponent implements OnInit {
       this.checkCount++;
     } else if (this.checkCount == 1){
       if (this.game.cardHold == $event){
-        console.log("success");
         this.game.saveCard.next();
       }
       this.checkCount++;
