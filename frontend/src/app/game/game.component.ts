@@ -13,6 +13,7 @@ export class GameComponent implements OnInit {
   base: number;
   gameSize = [12, 20, 40];
   defaultSize = 12;
+  checkCount: number = 0;
 
   constructor(
     private game: GameService
@@ -26,6 +27,23 @@ export class GameComponent implements OnInit {
     this.cards = this.game.setCards(this.base);
     this.base = this.cards.length;
     this.cards = this.game.shuffleCards(this.cards);
+  }
+
+  checkValue($event){
+    if (this.checkCount < 1){
+      this.game.cardHold = $event;
+      this.checkCount++;
+    } else if (this.checkCount == 1){
+      if (this.game.cardHold == $event){
+        console.log("success");
+        this.game.saveCard.next();
+      }
+      this.checkCount++;
+    } else {
+      this.checkCount = 0;
+      this.game.resetCards.next();
+      this.game.cardHold = 0;
+    }
   }
 
 }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import _ from 'lodash';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class GameService {
-
-    getAllCards(){
-
-    }
+    resetCards = new Subject();
+    saveCard = new Subject();
+    cardHold: number;
 
     shuffleCards(cards) {
         let cardsLeft = cards.length

@@ -20,7 +20,7 @@
 <div *ngIf="base < 13">
     <div class="grid25">
         <div *ngFor="let cardNum of cards">
-            <app-card [size]="base"></app-card>
+            <app-card [size]="base" [value]="cardNum" (cardValue)="checkValue($event)"></app-card>
             <br>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <div *ngIf="base > 13 && base < 21">
     <div class="grid20">
         <div *ngFor="let cardNum of cards">
-            <app-card [size]="base"></app-card>
+            <app-card [size]="base" [value]="cardNum" (cardValue)="checkValue($event)"></app-card>
             <br>
         </div>
     </div>
@@ -36,7 +36,7 @@
 <div *ngIf="base > 21 && base < 41">
     <div class="grid10">
         <div *ngFor="let cardNum of cards">
-            <app-card [size]="base"></app-card>
+            <app-card [size]="base" [value]="cardNum" (cardValue)="checkValue($event)"></app-card>
             <br>
         </div>
     </div>
