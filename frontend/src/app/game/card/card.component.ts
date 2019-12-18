@@ -91,6 +91,7 @@ export class CardComponent implements OnInit, OnDestroy {
       this.resetSub = this.game.resetCards.subscribe(()=>{
         this.imgSrc = this.backImg;
       })
+      this.game.resetCards.next();
     })
   }
 
