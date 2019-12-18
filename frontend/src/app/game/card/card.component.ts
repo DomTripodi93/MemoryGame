@@ -87,6 +87,11 @@ export class CardComponent implements OnInit, OnDestroy {
         }
       }
     })
+    this.game.resetAll.subscribe(()=>{
+      this.resetSub = this.game.resetCards.subscribe(()=>{
+        this.imgSrc = this.backImg;
+      })
+    })
   }
 
   checkCard(){

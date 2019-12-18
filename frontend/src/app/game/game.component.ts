@@ -22,7 +22,7 @@ export class GameComponent implements OnInit {
   }
 
   setGameSize(){
-    this.cards = [];
+    this.game.resetAll.next();
     this.base = this.gameSizeForm.value.size/2;
     this.cards = this.game.setCards(this.base);
     this.base = this.cards.length;

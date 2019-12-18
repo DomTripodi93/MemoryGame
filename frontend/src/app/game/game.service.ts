@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 export class GameService {
     resetCards = new Subject();
     saveCard = new Subject();
+    resetAll = new Subject();
     cardHold: number;
     checkCount: number = 0;
 
