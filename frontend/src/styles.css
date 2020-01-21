@@ -1,5 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: fancy;
+    src: url(./assets/HussarSzturm-Alxg.otf) format('opentype');
+}
+
 .centered{
     margin: auto;
     text-align: center;
+}
+
+h1, button{
+    font-family: fancy;
 }

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: clock;
+    src: url(../../assets/ExoMedium-5mMV.otf) format('opentype');
+}
+
+h3{
+    line-height: 150%;
+}
+
 .grid20 { 
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
@@ -35,16 +44,19 @@
     position: absolute;
     margin: 20.5% 22.5% 0% 22.5%;
     width: 55%;
-    height: 43%;
+    height: 49%;
     text-align: center;
 }
 
 .big-text{
-    font-size: 450%;
-    line-height: 145%;
+    font-size: 370%;
+    line-height: 140%;
 }
 
-.short{
-    margin: auto;
+.clock{
+    font-family: clock;
+}
+
+.middle{
     text-align: center;
 }

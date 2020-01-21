@@ -20,9 +20,16 @@
 </div>
 <div *ngIf="success" class="inner-box">
     <h1 class="big-text">Congratulations!</h1>
+    <h3>
+        You completed the game 
+        <br>
+        in <strong class="clock">{{minutes}}</strong> minutes 
+        and <strong class="clock">{{seconds}}</strong> seconds!
+    </h3>
     <h1 class="big-text">You Win!</h1>
-    <br>
-    <button class="btn btn-info" (click)="reset()"><h2 class="short">Play Again?</h2></button>
+    <button class="btn btn-info" (click)="reset()">
+        <h2 class="middle">Play Again?</h2>
+    </button>
 </div>
 <br><br>
 <div class="centered">

@@ -17,18 +17,30 @@ export class GameComponent implements OnInit, OnDestroy {
   defaultSize: number = 12;
   found = 0;
   success = false;
+  startTime = false;
+  time = 0;
+  minutes = "0";
+  seconds = "0";
 
   constructor(
     private game: GameService
   ) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.game.saveCard.subscribe(()=>{
-      this.found += 2;
-      if (this.found == this.base){
-        this.success = true;
-      }
-    }))
+    this.subscriptions.push(this.game.saveCard.subscribe(
+      ()=>{
+        this.found += 2;
+        if (this.found == this.base){
+          this.stopTimer();
+          this.success = true;
+        };
+      })
+    );
+    this.subscriptions.push(this.game.timerTrigger.subscribe(
+      () => {
+        this.startTimer();
+      })
+    )
   }
 
   setGameSize(){
@@ -50,12 +62,12 @@ export class GameComponent implements OnInit, OnDestroy {
         this.game.saveCard.next();
       } else{
         this.game.checkCount++;
-      }
+      };
     } else {
       this.game.checkCount = 0;
       this.game.cardHold = 0;
       this.checkValue($event);
-    }
+    };
   }
 
   reset(){
@@ -63,8 +75,36 @@ export class GameComponent implements OnInit, OnDestroy {
     this.setGameSize();
   }
 
-  ngOnDestroy(){
+  startTimer(){
+    this.time = 0;
+    this.startTime = true;
+    this.timeGame();
+  }
 
+  timeGame(){
+    if (this.startTime){
+      setTimeout(()=>{
+        this.time += 1;
+        this.timeGame();
+      }, 1000);
+    };
+  }
+
+  stopTimer(){
+    this.startTime = false;
+    if (this.time > 59){
+      this.minutes = (this.time/60).toFixed(0);
+      this.seconds = (this.time%60).toFixed(0);
+    } else {
+      this.seconds = this.time + "";
+    }
+    this.game.firstCard = true;
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 
 }

@@ -13,6 +13,7 @@ export class CardComponent implements OnInit, OnDestroy {
   @Input() size: number;
   resetSub: Subscription;
   gameSub: Subscription;
+  resetAllSub: Subscription;
   flipped = false;
   imgSrc = "../../../assets/cards/red_back.png";
   backImg = "../../../assets/cards/red_back.png";
@@ -87,7 +88,7 @@ export class CardComponent implements OnInit, OnDestroy {
         }
       }
     })
-    this.game.resetAll.subscribe(()=>{
+    this.resetAllSub = this.game.resetAll.subscribe(()=>{
       this.resetSub = this.game.resetCards.subscribe(()=>{
         this.imgSrc = this.backImg;
       })
@@ -96,6 +97,10 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   checkCard(){
+    if (this.game.firstCard){
+      this.game.firstCard = false;
+      this.game.timerTrigger.next();
+    }
     if(this.game.checkCount == 2) {
       this.game.resetCards.next();
       this.game.checkCount = 0;
@@ -107,6 +112,7 @@ export class CardComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.resetSub.unsubscribe();
     this.gameSub.unsubscribe();
+    this.resetAllSub.unsubscribe();
   }
 
 }

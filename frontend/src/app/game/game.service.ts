@@ -7,8 +7,10 @@ export class GameService {
     resetCards = new Subject();
     saveCard = new Subject();
     resetAll = new Subject();
+    timerTrigger = new Subject();
     cardHold: number;
     checkCount: number = 0;
+    firstCard = true;
 
     shuffleCards(cards) {
         let cardsLeft = cards.length
