@@ -17,3 +17,34 @@
     display: grid;
     grid-template-columns: 100%;
 }
+
+.overlay {
+    position: absolute;
+    opacity: 50%;
+    background-color: blueviolet;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.inner-box{
+    background-color: blueviolet;
+    position: absolute;
+    margin: 20.5% 22.5% 0% 22.5%;
+    width: 55%;
+    height: 43%;
+    text-align: center;
+}
+
+.big-text{
+    font-size: 450%;
+    line-height: 145%;
+}
+
+.short{
+    margin: auto;
+    text-align: center;
+}

@@ -16,6 +16,14 @@
         </div>
     </form>      
 </div>
+<div *ngIf="success" class="overlay">
+</div>
+<div *ngIf="success" class="inner-box">
+    <h1 class="big-text">Congratulations!</h1>
+    <h1 class="big-text">You Win!</h1>
+    <br>
+    <button class="btn btn-info" (click)="reset()"><h2 class="short">Play Again?</h2></button>
+</div>
 <br><br>
 <div class="centered">
     <div *ngIf="base < 13">
